@@ -1135,14 +1135,6 @@ class View_panel_stop(discord.ui.View):
         await interaction.response.edit_message(content="", view=view)
 
 
-def get_token(name_file_token="token"):
-    with open(name_file_token, "r") as file:
-        for line in file:
-            if line.startswith("#"):
-                continue
-            return line
-
-
 if __name__ == "__main__":
-    token = get_token()
+    token = os.environ.get("DISCORD_TOKEN")
     bot.run(token)
