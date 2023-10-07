@@ -1,7 +1,7 @@
 from typing import TypeVar
 import numpy as np
 import copy
-import matplotlib.pyplot as plt
+
 Player = TypeVar("Player")
 
 
