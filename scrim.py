@@ -1,7 +1,4 @@
-from typing import TypeVar
 from build_teams import *
-
-Player = TypeVar("Player")
 
 
 class Roles:
@@ -96,7 +93,7 @@ class Roles:
         return mean / n
 
 
-class Player:
+class qs:
     def __init__(self, name, discord_id, roles: Roles):
         """
         name : str, Nomiia, Zygoto, ...

@@ -3,14 +3,16 @@ from io import BytesIO
 
 import discord
 from discord.ext import commands
-from discord.ui import InputText, Modal
+from discord.ui import TextInput, Modal
 
 from discord_scrim import *
 
 
 class Bot(commands.Bot):
     def __init__(self):
-        super().__init__(command_prefix="!")
+        intents = discord.Intents.default()
+        intents.message_content = True
+        super().__init__(command_prefix="!", intents=intents)
         self.main_message = None
         self.guild_ids = []
         self.dict_emojis = {}  # {0:emoji, ...}
@@ -21,12 +23,8 @@ class Bot(commands.Bot):
         self.discrim = Discord_scrim()
         self.__get_guilds_id()
 
-    def __get_guilds_id(self, name_file_guilds_id="guilds_id"):
-        with open(name_file_guilds_id, "r") as file:
-            for line in file:
-                if line.startswith("#"):
-                    continue
-                self.guild_ids.append(int(line))
+    def __get_guilds_id(self):
+        return [int(os.environ["GUILD_ID"])]
 
     def fill_dict_emojis(self):
         temp_dict = {
@@ -329,10 +327,10 @@ class View_panel_begin_registration(discord.ui.View):
             def __init__(self):
                 super().__init__("Formulaire de lancement du Scrim")
                 self.add_item(
-                    InputText(
+                    TextInput(
                         label="Description/heure",
                         value="Le Scrim commence ce samedi à 21h30",
-                        style=discord.InputTextStyle.long,
+                        style=discord.TextStyle.long,
                     )
                 )
 

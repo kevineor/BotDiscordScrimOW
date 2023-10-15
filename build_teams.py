@@ -1,8 +1,6 @@
-from typing import TypeVar
+from scrim import Player
 import numpy as np
 import copy
-
-Player = TypeVar("Player")
 
 
 def get_team_elo_mean(team_id: int, teams_dict: dict) -> float:
